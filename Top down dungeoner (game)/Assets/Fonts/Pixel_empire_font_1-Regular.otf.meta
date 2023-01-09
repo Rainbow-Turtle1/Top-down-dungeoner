@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 1970a1f43374ccf428ec499a232c4ede
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Pixel_empire_font_1
+  fontNames:
+  - Pixel_empire_font_1
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 25e42054889df0d439338aade3c3a8d0, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

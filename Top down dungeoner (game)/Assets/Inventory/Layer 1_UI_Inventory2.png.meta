@@ -1,0 +1,512 @@
+fileFormatVersion: 2
+guid: ce3e1676600345b42b103fb6d6aafefa
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6910099924095988486
+    second: Layer 1_UI_Inventory2_0
+  - first:
+      213: 1132568773496432956
+    second: Layer 1_UI_Inventory2_1
+  - first:
+      213: -6669441807409450023
+    second: Layer 1_UI_Inventory2_2
+  - first:
+      213: -3007261163330579086
+    second: Layer 1_UI_Inventory2_3
+  - first:
+      213: -5192386968439663935
+    second: HelmIcon
+  - first:
+      213: 4975444050684518212
+    second: BodyIcon
+  - first:
+      213: 268142645625179135
+    second: Rune1
+  - first:
+      213: 1916888962208872765
+    second: Rune2
+  - first:
+      213: 7012711616681639584
+    second: Rune3
+  - first:
+      213: -8692781358466577616
+    second: Rune4
+  - first:
+      213: -4904743315941455186
+    second: Rune5
+  - first:
+      213: -1043711525842157834
+    second: Rune6
+  - first:
+      213: 2079550857668332807
+    second: Layer 1_UI_Inventory2_12
+  - first:
+      213: 6689389650006919116
+    second: Layer 1_UI_Inventory2_13
+  - first:
+      213: 7459841605962205223
+    second: Layer 1_UI_Inventory2_14
+  - first:
+      213: 952616602549665411
+    second: Layer 1_UI_Inventory2_15
+  - first:
+      213: 560591135193753120
+    second: Layer 1_UI_Inventory2_16
+  - first:
+      213: 6808448470303067061
+    second: Layer 1_UI_Inventory2_17
+  - first:
+      213: 5690526155857778297
+    second: Layer 1_UI_Inventory2_18
+  - first:
+      213: 1687077543199933709
+    second: Layer 1_UI_Inventory2_19
+  - first:
+      213: -7447908279768206111
+    second: Layer 1_UI_Inventory2_20
+  - first:
+      213: 2562143344156266638
+    second: Layer 1_UI_Inventory2_21
+  - first:
+      213: -6533298172870384590
+    second: Layer 1_UI_Inventory2_22
+  - first:
+      213: 5506267467673048812
+    second: Layer 1_UI_Inventory2_23
+  - first:
+      213: 668633710332552973
+    second: Layer 1_UI_Inventory2_24
+  - first:
+      213: 1346725478756872686
+    second: Layer 1_UI_Inventory2_25
+  - first:
+      213: -499409739896781588
+    second: Layer 1_UI_Inventory2_26
+  - first:
+      213: -8119500344514584518
+    second: Layer 1_UI_Inventory2_27
+  - first:
+      213: -2500237301297110670
+    second: Layer 1_UI_Inventory2_28
+  - first:
+      213: 8698470175176471493
+    second: Layer 1_UI_Inventory2_29
+  - first:
+      213: 6378911033031570677
+    second: Layer 1_UI_Inventory2_30
+  - first:
+      213: 9145997050936807623
+    second: Layer 1_UI_Inventory2_31
+  - first:
+      213: -4875838513200020555
+    second: Layer 1_UI_Inventory2_32
+  - first:
+      213: -2814040148423097872
+    second: Layer 1_UI_Inventory2_33
+  - first:
+      213: -5330104562051432473
+    second: Layer 1_UI_Inventory2_34
+  - first:
+      213: -9093251091425068586
+    second: Layer 1_UI_Inventory2_35
+  - first:
+      213: -1752087191796818212
+    second: Layer 1_UI_Inventory2_36
+  - first:
+      213: -8257724404187676076
+    second: Layer 1_UI_Inventory2_37
+  - first:
+      213: -2387970395665355985
+    second: Layer 1_UI_Inventory2_38
+  - first:
+      213: 3001916669099973832
+    second: Layer 1_UI_Inventory2_39
+  - first:
+      213: -2940181370951444877
+    second: Layer 1_UI_Inventory2_40
+  - first:
+      213: 1590587822425976499
+    second: Layer 1_UI_Inventory2_41
+  - first:
+      213: 3250694246011947317
+    second: Layer 1_UI_Inventory2_42
+  - first:
+      213: 4968996517128503844
+    second: Layer 1_UI_Inventory2_43
+  - first:
+      213: -5289031614678490879
+    second: Layer 1_UI_Inventory2_44
+  - first:
+      213: 7550145195964799777
+    second: Layer 1_UI_Inventory2_45
+  - first:
+      213: 6299131040596953313
+    second: Layer 1_UI_Inventory2_46
+  - first:
+      213: 9189739873251773087
+    second: Layer 1_UI_Inventory2_47
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Layer 1_UI_Inventory2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 603f13a054b95ef50800000000000000
+      internalID: 6910099924095988486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Layer 1_UI_Inventory2_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3964f38c41b7bf00800000000000000
+      internalID: 1132568773496432956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Layer 1_UI_Inventory2_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d3783b23026173a0800000000000000
+      internalID: -6669441807409450023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Layer 1_UI_Inventory2_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2755ad4b7ef0446d0800000000000000
+      internalID: -3007261163330579086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HelmIcon
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 73
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c259c9009fe0f7b0800000000000000
+      internalID: -5192386968439663935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BodyIcon
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 72
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44f91e8c0045c0540800000000000000
+      internalID: 4975444050684518212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rune1
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 75
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffb4f95c052a8b300800000000000000
+      internalID: 268142645625179135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rune2
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 74
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d39b352ea582a9a10800000000000000
+      internalID: 1916888962208872765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rune3
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 43
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ae70987f08225160800000000000000
+      internalID: 7012711616681639584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rune4
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 43
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03b467a29690d5780800000000000000
+      internalID: -8692781358466577616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rune5
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 43
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaa86dac0f9deebb0800000000000000
+      internalID: -4904743315941455186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rune6
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 43
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fe7236a5edf381f0800000000000000
+      internalID: -1043711525842157834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
