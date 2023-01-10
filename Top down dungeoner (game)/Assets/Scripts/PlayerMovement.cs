@@ -5,23 +5,38 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField]private Rigidbody2D rb;
+    [SerializeField]private SpriteRenderer sr;
+    public GameObject player;
+    
     // movement speed of the character
     public float speed = 40.0f;
 
     // dash speed of the character
     public float dashSpeed = 120.0f;
     private int dashtime;
+    private float dashcooldown;
 
     // amount of stamina required for a dash
     public float dashStamina = 10.0f;
 
     private float currentStamina;
-    private Slider staminaBar;
+    [SerializeField]private Slider staminaBar;
 
     public int staminaMax = 500;
     public float regenTick = 0.2f;
     private Coroutine regen;
-   
+
+    Vector2 movement;
+    
+    private void Start(){
+        player = this.gameObject;
+        //life = hearts.Length;
+        currentStamina = staminaMax;
+        staminaBar.maxValue = staminaMax;
+        staminaBar.value = staminaMax;
+    }
+
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -42,13 +57,11 @@ public class PlayerMovement : MonoBehaviour
             if (currentStamina - 20 >= 0){
                 currentStamina = currentStamina - 20;
                 staminaBar.value = currentStamina;
-                head.SetActive(true);
-                Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
+                //Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
                 PlayerMove.instance.UseStamina(60);
-                speed=(speed*dashspeed);
-                dash=true;
-                dashtime=(Mathf.RoundToInt(60*dashLenthSec));
-                camAnimator.SetBool("Dashing", true);
+                speed=(speed*dashSpeed);
+                //dashtime=(Mathf.RoundToInt(60*dashLenthSec));
+                //camAnimator.SetBool("Dashing", true);
                     if (regen != null){
                         StopCoroutine(regen);
                     }
@@ -63,21 +76,22 @@ public class PlayerMovement : MonoBehaviour
 
         void FixedUpdate(){
         //use this for actual movement as it is more reliable.
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+
         if (dashcooldown>0f){
             dashcooldown-=0.1f;
         }
         if (dashtime>0){
             dashtime-=1;
         }
-        if (dash==true && dashtime<=0){
-            head.SetActive(false);
-            Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
-            camAnimator.SetBool("Dashing", false);
-            dash=false;
-            dashcooldown=3f;
-            moveSpeed=moveSpeed/dashspeed;
-        }
+        
+        //head.SetActive(false);
+        //Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
+        //camAnimator.SetBool("Dashing", false);
+        //dash=false;
+        //dashcooldown=3f;
+        //speed=moveSpeed/dashspeed;
+        
 
     }
 
