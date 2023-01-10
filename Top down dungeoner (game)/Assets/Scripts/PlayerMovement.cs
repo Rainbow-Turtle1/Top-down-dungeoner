@@ -1,54 +1,105 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     // movement speed of the character
-    public float speed = 5.0f;
+    public float speed = 40.0f;
 
     // dash speed of the character
-    public float dashSpeed = 10.0f;
+    public float dashSpeed = 120.0f;
+    private int dashtime;
 
     // amount of stamina required for a dash
     public float dashStamina = 10.0f;
 
-    // current stamina of the character
     private float currentStamina;
+    private Slider staminaBar;
 
-    // Update is called once per frame
+    public int staminaMax = 500;
+    public float regenTick = 0.2f;
+    private Coroutine regen;
+   
     void Update()
     {
-        // get input from the horizontal axis (left and right arrow keys by default)
         float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");// get input axis
 
-        // get input from the vertical axis (up and down arrow keys by default)
-        float verticalInput = Input.GetAxis("Vertical");
+        bool canDash = currentStamina >= dashStamina;// check if the character has enough stamina to dash
 
-        // check if the character has enough stamina to dash
-        bool canDash = currentStamina >= dashStamina;
-
-        // check if the player is pressing the dash button
-        bool dashInput = Input.GetButtonDown("Dash");
-
-        // calculate the movement speed for this frame
-        float movementSpeed = speed;
-
-        // check if the character should dash
-        if (canDash && dashInput)
+        bool dashInput = Input.GetButtonDown("Dash"); // check if the player is pressing the dash button
+        
+        float movementSpeed = speed;// calculate the movement speed for this frame
+        
+        if (canDash && dashInput)// check if the character should dash
         {
-            // decrease the character's stamina
-            currentStamina -= dashStamina;
+            currentStamina -= dashStamina;// decrease the character's stamina
             Debug.Log("Dash");
+            movementSpeed = dashSpeed;// increase the movement speed for this frame
 
-            // increase the movement speed for this frame
-            movementSpeed = dashSpeed;
+            if (currentStamina - 20 >= 0){
+                currentStamina = currentStamina - 20;
+                staminaBar.value = currentStamina;
+                head.SetActive(true);
+                Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
+                PlayerMove.instance.UseStamina(60);
+                speed=(speed*dashspeed);
+                dash=true;
+                dashtime=(Mathf.RoundToInt(60*dashLenthSec));
+                camAnimator.SetBool("Dashing", true);
+                    if (regen != null){
+                        StopCoroutine(regen);
+                    }
+                regen = StartCoroutine(RegenStamina());
+            }
         }
 
-        // calculate the character's movement vector
-        Vector2 movement = new Vector2(horizontalInput, verticalInput) * movementSpeed;
+        Vector2 movement = new Vector2(horizontalInput, verticalInput) * movementSpeed;  
 
-        // move the character by the calculated movement vector
-        transform.position += (Vector3)movement * Time.deltaTime;
+        transform.position += (Vector3)movement * Time.deltaTime;// move the character by the calculated movement vector
+    }
+
+        void FixedUpdate(){
+        //use this for actual movement as it is more reliable.
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (dashcooldown>0f){
+            dashcooldown-=0.1f;
+        }
+        if (dashtime>0){
+            dashtime-=1;
+        }
+        if (dash==true && dashtime<=0){
+            head.SetActive(false);
+            Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
+            camAnimator.SetBool("Dashing", false);
+            dash=false;
+            dashcooldown=3f;
+            moveSpeed=moveSpeed/dashspeed;
+        }
+
+    }
+
+    public void UseStamina(int amount){
+        if (currentStamina - amount >= 0){
+            currentStamina = currentStamina - amount;
+            staminaBar.value = currentStamina;
+            if (regen != null){
+                StopCoroutine(regen);
+            }
+            regen = StartCoroutine(RegenStamina());
+        }
+    }
+
+    private IEnumerator RegenStamina(){
+        yield return new WaitForSeconds(1);
+
+        while(currentStamina < staminaMax){
+            currentStamina += 2;
+            staminaBar.value = currentStamina;
+            yield return new WaitForSeconds(regenTick);;
+        }
+        regen = null;
     }
 }
