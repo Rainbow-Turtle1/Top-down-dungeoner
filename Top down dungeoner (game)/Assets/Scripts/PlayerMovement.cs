@@ -12,29 +12,32 @@ public class PlayerMovement : MonoBehaviour
     //public GameObject head;
     //public GameObject player;
     
-    private float moveSpeed = 50f;
+    [SerializeField] private float moveSpeed = 100f;
     [SerializeField] private Rigidbody2D rb;
-    private float dashCooldown;
-    private float dashSpeed = 1.3f; 
-    private float dashCost = 20f;
+    [SerializeField] private float dashCooldown = 1f; // a changeable constant for the legth of time before the palyer can dash again.
+    private float dashCooldownTimer; // the variable that is decreased every frame to prevern the player fro dashing before the cooldown is up.
+    [SerializeField] private float dashSpeed = 5f; 
+    [SerializeField] private float dashCost = 20f;
     [SerializeField] private int dashDuration;
-    private float dashDurationSec = 1;
+    [SerializeField] private float dashDurationSec = 0.4f;
     private bool dashing = false;
 
     [SerializeField] private Slider staminaBar;
     [SerializeField] private int staminaMax = 500;
+    [SerializeField] private int staminaRegenBuffer = 1;
     private float currentStamina;
-    private float regenTick = 0.2f;
+    [SerializeField] private float regenTick = 0.2f;
     private Coroutine regen;
 
     Vector2 movement;
 
+    [SerializeField]private Animator camAnimator;
+    [SerializeField]private Animator HeadAnimator;
+    [SerializeField]private Animator LegAnimator;
+    [SerializeField]private GameObject Trails;
     //private float dustFreq;
     //private float dusttime=2f;
     //private Animator anim;
-    //public Animator camAnimator;
-    //public Animator HeadAnimator;
-    //public Animator LegAnimator;
     //public Animator ScreenEffect;
     //public GameObject trailEffect;
     //public GameObject DashEffect;
@@ -43,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start(){
         //player = this.gameObject;
-        //life = hearts.Length;
         currentStamina = staminaMax;
         staminaBar.maxValue = staminaMax;
         staminaBar.value = staminaMax;
@@ -61,30 +63,27 @@ public class PlayerMovement : MonoBehaviour
             //}
         //}
         if (movement.x < 0.0){
-            transform.localScale = new Vector2(-1f,1f);
-            //sr.flipX=true;
+            transform.localScale = new Vector2(-1f,1f); // flip player when moving in other direction
         }
         if (movement.x > 0.0){
-            transform.localScale = new Vector2(1f,1f);
-            //sr.flipX=false;
-
+            transform.localScale = new Vector2(1f,1f); // flip player back
         }
         movement.y = Input.GetAxisRaw("Vertical");
         
-        //HeadAnimator.SetFloat("Speed", movement.sqrMagnitude);
-        //LegAnimator.SetFloat("Speed", movement.sqrMagnitude);
+        HeadAnimator.SetFloat("Speed", movement.sqrMagnitude);
+        LegAnimator.SetFloat("Speed", movement.sqrMagnitude);
         
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldown<=0f){
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldownTimer<=0f){
             if (currentStamina - dashCost >= 0){
-                //currentStamina = currentStamina - dashCost;
-                staminaBar.value = currentStamina;
-                //head.SetActive(true);
-                //Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
+                dashCooldownTimer = dashCooldown;
                 UseStamina(dashCost);
+                staminaBar.value = currentStamina;
                 moveSpeed=(moveSpeed*dashSpeed);
                 dashing=true;
                 dashDuration=(Mathf.RoundToInt(60*dashDurationSec));  //60fps in the update function meaning the cooldown needs to be 60x the length in seconds
-                //camAnimator.SetBool("Dashing", true);
+                //Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
+                Trails.SetActive(true);
+                camAnimator.SetBool("Dashing", true);
             }
         }
     }
@@ -93,8 +92,8 @@ public class PlayerMovement : MonoBehaviour
         
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); //move the player
         
-        if (dashCooldown>0f){
-            dashCooldown-=0.1f; //if the cooldown more than zero decrease it
+        if (dashCooldownTimer>0f){
+            dashCooldownTimer-=0.1f; //if the cooldown more than zero decrease it
         }
         if (dashDuration>0){
             dashDuration-=1; 
@@ -102,10 +101,11 @@ public class PlayerMovement : MonoBehaviour
         if (dashing==true && dashDuration<=0){
             //head.SetActive(false);
             //Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
-            //camAnimator.SetBool("Dashing", false);
+            camAnimator.SetBool("Dashing", false);
             dashing=false;
-            dashCooldown=3f;
+            dashCooldownTimer=3f;
             moveSpeed=moveSpeed/dashSpeed;
+            Trails.SetActive(false);
         }
 
     }
@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private IEnumerator RegenStamina(){
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(staminaRegenBuffer);
 
         while(currentStamina < staminaMax){
             currentStamina += 2;
