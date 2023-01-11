@@ -4,14 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
-{
-    //private RaycastHit hit;
-    //public SpriteRenderer sr;
-    //Camera cam;
-    //public GameObject foot;
-    //public GameObject head;
-    //public GameObject player;
-    
+{   
     [SerializeField] private float moveSpeed = 100f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float dashCooldown = 1f; // a changeable constant for the legth of time before the palyer can dash again.
@@ -35,14 +28,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private Animator HeadAnimator;
     [SerializeField]private Animator LegAnimator;
     [SerializeField]private GameObject Trails;
-    //private float dustFreq;
-    //private float dusttime=2f;
-    //private Animator anim;
-    //public Animator ScreenEffect;
-    //public GameObject trailEffect;
-    //public GameObject DashEffect;
-    //Vector2 movement;
-    //public static PlayerMovement instance;
+    [SerializeField]private GameObject dashParticles;
+    [SerializeField]private GameObject walkParticles;
+    [SerializeField]private GameObject ParticleSpawn;
 
     private void Start(){
         //player = this.gameObject;
@@ -54,14 +42,10 @@ public class PlayerMovement : MonoBehaviour
     void Update(){
         //process inputs here
         movement.x = Input.GetAxisRaw("Horizontal");
-        //if (movement.x != 0.0 || movement.y != 0.0){
-            //if (dustFreq <=0) {
-                //Instantiate(trailEffect, foot.transform.position, Quaternion.identity);
-                //dustFreq=dusttime;
-            //} else {
-                //dustFreq -= Time.deltaTime;
-            //}
-        //}
+        if (movement.x != 0.0 || movement.y != 0.0){
+            Instantiate(walkParticles, ParticleSpawn.transform.position, Quaternion.identity);
+            
+        }
         if (movement.x < 0.0){
             transform.localScale = new Vector2(-1f,1f); // flip player when moving in other direction
         }
@@ -81,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
                 moveSpeed=(moveSpeed*dashSpeed);
                 dashing=true;
                 dashDuration=(Mathf.RoundToInt(60*dashDurationSec));  //60fps in the update function meaning the cooldown needs to be 60x the length in seconds
-                //Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
+                Instantiate(dashParticles, ParticleSpawn.transform.position, Quaternion.identity);
                 Trails.SetActive(true);
                 camAnimator.SetBool("Dashing", true);
             }
@@ -99,8 +83,7 @@ public class PlayerMovement : MonoBehaviour
             dashDuration-=1; 
         }
         if (dashing==true && dashDuration<=0){
-            //head.SetActive(false);
-            //Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
+            Instantiate(dashParticles, ParticleSpawn.transform.position, Quaternion.identity);
             camAnimator.SetBool("Dashing", false);
             dashing=false;
             dashCooldownTimer=3f;
