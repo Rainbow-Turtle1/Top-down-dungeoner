@@ -5,97 +5,112 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]private Rigidbody2D rb;
-    [SerializeField]private SpriteRenderer sr;
-    public GameObject player;
+    //private RaycastHit hit;
+    //public SpriteRenderer sr;
+    //Camera cam;
+    //public GameObject foot;
+    //public GameObject head;
+    //public GameObject player;
     
-    // movement speed of the character
-    public float speed = 40.0f;
+    private float moveSpeed = 50f;
+    [SerializeField] private Rigidbody2D rb;
+    private float dashCooldown;
+    private float dashSpeed = 1.3f; 
+    private float dashCost = 20f;
+    [SerializeField] private int dashDuration;
+    private float dashDurationSec = 1;
+    private bool dashing = false;
 
-    // dash speed of the character
-    public float dashSpeed = 120.0f;
-    private int dashtime;
-    private float dashcooldown;
-
-    // amount of stamina required for a dash
-    public float dashStamina = 10.0f;
-
+    [SerializeField] private Slider staminaBar;
+    [SerializeField] private int staminaMax = 500;
     private float currentStamina;
-    [SerializeField]private Slider staminaBar;
-
-    public int staminaMax = 500;
-    public float regenTick = 0.2f;
+    private float regenTick = 0.2f;
     private Coroutine regen;
 
     Vector2 movement;
-    
+
+    //private float dustFreq;
+    //private float dusttime=2f;
+    //private Animator anim;
+    //public Animator camAnimator;
+    //public Animator HeadAnimator;
+    //public Animator LegAnimator;
+    //public Animator ScreenEffect;
+    //public GameObject trailEffect;
+    //public GameObject DashEffect;
+    //Vector2 movement;
+    //public static PlayerMovement instance;
+
     private void Start(){
-        player = this.gameObject;
+        //player = this.gameObject;
         //life = hearts.Length;
         currentStamina = staminaMax;
         staminaBar.maxValue = staminaMax;
         staminaBar.value = staminaMax;
     }
 
-    void Update()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");// get input axis
+    void Update(){
+        //process inputs here
+        movement.x = Input.GetAxisRaw("Horizontal");
+        //if (movement.x != 0.0 || movement.y != 0.0){
+            //if (dustFreq <=0) {
+                //Instantiate(trailEffect, foot.transform.position, Quaternion.identity);
+                //dustFreq=dusttime;
+            //} else {
+                //dustFreq -= Time.deltaTime;
+            //}
+        //}
+        if (movement.x < 0.0){
+            transform.localScale = new Vector2(-1f,1f);
+            //sr.flipX=true;
+        }
+        if (movement.x > 0.0){
+            transform.localScale = new Vector2(1f,1f);
+            //sr.flipX=false;
 
-        bool canDash = currentStamina >= dashStamina;// check if the character has enough stamina to dash
-
-        bool dashInput = Input.GetButtonDown("Dash"); // check if the player is pressing the dash button
+        }
+        movement.y = Input.GetAxisRaw("Vertical");
         
-        float movementSpeed = speed;// calculate the movement speed for this frame
+        //HeadAnimator.SetFloat("Speed", movement.sqrMagnitude);
+        //LegAnimator.SetFloat("Speed", movement.sqrMagnitude);
         
-        if (canDash && dashInput)// check if the character should dash
-        {
-            currentStamina -= dashStamina;// decrease the character's stamina
-            Debug.Log("Dash");
-            movementSpeed = dashSpeed;// increase the movement speed for this frame
-
-            if (currentStamina - 20 >= 0){
-                currentStamina = currentStamina - 20;
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldown<=0f){
+            if (currentStamina - dashCost >= 0){
+                //currentStamina = currentStamina - dashCost;
                 staminaBar.value = currentStamina;
+                //head.SetActive(true);
                 //Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
-                PlayerMove.instance.UseStamina(60);
-                speed=(speed*dashSpeed);
-                //dashtime=(Mathf.RoundToInt(60*dashLenthSec));
+                UseStamina(dashCost);
+                moveSpeed=(moveSpeed*dashSpeed);
+                dashing=true;
+                dashDuration=(Mathf.RoundToInt(60*dashDurationSec));  //60fps in the update function meaning the cooldown needs to be 60x the length in seconds
                 //camAnimator.SetBool("Dashing", true);
-                    if (regen != null){
-                        StopCoroutine(regen);
-                    }
-                regen = StartCoroutine(RegenStamina());
             }
         }
-
-        Vector2 movement = new Vector2(horizontalInput, verticalInput) * movementSpeed;  
-
-        transform.position += (Vector3)movement * Time.deltaTime;// move the character by the calculated movement vector
     }
 
-        void FixedUpdate(){
-        //use this for actual movement as it is more reliable.
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
-
-        if (dashcooldown>0f){
-            dashcooldown-=0.1f;
-        }
-        if (dashtime>0){
-            dashtime-=1;
-        }
+    void FixedUpdate(){ //use this for actual movement as it is more reliable.
         
-        //head.SetActive(false);
-        //Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
-        //camAnimator.SetBool("Dashing", false);
-        //dash=false;
-        //dashcooldown=3f;
-        //speed=moveSpeed/dashspeed;
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); //move the player
         
+        if (dashCooldown>0f){
+            dashCooldown-=0.1f; //if the cooldown more than zero decrease it
+        }
+        if (dashDuration>0){
+            dashDuration-=1; 
+        }
+        if (dashing==true && dashDuration<=0){
+            //head.SetActive(false);
+            //Instantiate(DashEffect, foot.transform.position, Quaternion.identity);
+            //camAnimator.SetBool("Dashing", false);
+            dashing=false;
+            dashCooldown=3f;
+            moveSpeed=moveSpeed/dashSpeed;
+        }
 
     }
-
-    public void UseStamina(int amount){
+    
+    public void UseStamina(float amount){
         if (currentStamina - amount >= 0){
             currentStamina = currentStamina - amount;
             staminaBar.value = currentStamina;
