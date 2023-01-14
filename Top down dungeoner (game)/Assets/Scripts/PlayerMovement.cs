@@ -31,20 +31,26 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private GameObject dashParticles;
     [SerializeField]private GameObject walkParticles;
     [SerializeField]private GameObject ParticleSpawn;
+    private int timeToNextDust;
+    [Range(1,20)]public int timeBetweenDust;
 
     private void Start(){
         //player = this.gameObject;
         currentStamina = staminaMax;
         staminaBar.maxValue = staminaMax;
         staminaBar.value = staminaMax;
+        timeToNextDust = 0;
     }
 
     void Update(){
         //process inputs here
         movement.x = Input.GetAxisRaw("Horizontal");
-        if (movement.x != 0.0 || movement.y != 0.0){
+        if ((movement.x != 0.0 || movement.y != 0.0) && (timeToNextDust<=0)){
             Instantiate(walkParticles, ParticleSpawn.transform.position, Quaternion.identity);
-            
+            timeToNextDust = (Mathf.RoundToInt((timeBetweenDust/(moveSpeed/2))));
+            Debug.Log((Mathf.RoundToInt(moveSpeed*timeBetweenDust)));
+        }else{
+            timeToNextDust-=1;
         }
         if (movement.x < 0.0){
             transform.localScale = new Vector2(-1f,1f); // flip player when moving in other direction
